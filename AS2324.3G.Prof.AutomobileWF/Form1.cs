@@ -15,13 +15,9 @@ namespace AS2324._3G.Prof.AutomobileWF
             // parameters setting on progress bar
             prbVelocita.Minimum = 0;
             prbVelocita.Maximum = 160;
-
-            grbComandi.Enabled = false;
-
-            if(chkAccensione_CheckedChanged(chkAccensione, EventArgs.Empty) && chkCinture_CheckedChanged(chkCinture, EventArgs.Empty) == true)
-            {
-                grbComandi.Enabled = false;
-            }
+            monitor();
+            grbComandi.Enabled = true;
+           
         }
 
         private void btnAccelera_Click(object sender, EventArgs e)
@@ -41,24 +37,39 @@ namespace AS2324._3G.Prof.AutomobileWF
 
         private void monitor()
         {
+            if (accensioneMotore() == false)
+            {
+                lstMonitor.Items.Add("Accendere il motore");
+            }
+            if (chkCinture.Checked == false)
+            {
+                lstMonitor.Items.Add("Allacciare le cinture");
+            }
             prbVelocita.Value = (int)velocita;
+
+        }
+        public bool accensioneMotore()
+        {
+            if (chkAccensione.Checked==true) return true;
+            else return false;
+            if (chkCinture.Checked == true) return true;
+            else return false;
+        }
+        public bool chkAccensione_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkAccensione.Checked == true)
+                return true;
+            else
+                return false;
+
         }
 
-            public bool chkAccensione_CheckedChanged(object sender, EventArgs e)
-            {
-                if (chkAccensione.Checked == true)
-                    return true;
-                else
-                    return false;
-
-            }
-            
         bool chkCinture_CheckedChanged(object sender, EventArgs e)
-            {
+        {
             if (chkCinture.Checked == true)
-                return true;               
-            else                  
+                return true;
+            else
                 return false;
-        }                   
+        }
     }   
 }
