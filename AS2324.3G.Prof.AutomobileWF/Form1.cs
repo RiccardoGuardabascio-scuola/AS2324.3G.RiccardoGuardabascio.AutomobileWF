@@ -53,6 +53,31 @@ namespace AS2324._3G.Prof.AutomobileWF
                 lstMonitor.Items.Add("Inserire il tipo di strada da percorrere");
             }
 
+            switch (lstMonitor.Text)
+            {
+                case "Autostrada (130 km/h)":
+                    lstMonitor.Items.Add("Non superare il limite di 130 km/h");
+                    if (velocita > 130)
+                    {
+                        lstMonitor.Items.Add("RALLENTARE!");
+                    }
+                    break;
+                case "Extraurbana (90 km/h)":
+                    lstMonitor.Items.Add("Non superare il limite di 90 km/h");
+                    if (velocita > 90)
+                    {
+                        lstMonitor.Items.Add("RALLENTARE!");
+                    }
+                    break;
+                case "Urbana (50 km/h)":
+                    lstMonitor.Items.Add("Non superare il limite di 50 km/h");
+                    if (velocita > 50)
+                    {
+                        lstMonitor.Items.Add("RALLENTARE!");
+                    }
+                    break;
+            }
+
             prbVelocita.Value = (int)velocita;
         }      
     }
